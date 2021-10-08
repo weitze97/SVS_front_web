@@ -7,4 +7,4 @@ app = Flask(__name__)     # 建立Application物件
 def home():    # view函式
     return render_template("home.html")   # 回傳網站首頁內容
 
-app.run()
+app.run() ##
