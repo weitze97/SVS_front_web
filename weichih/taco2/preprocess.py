@@ -15,9 +15,9 @@ frame_unit = 0.005  # 5-ms base
 sec_per_beat = 60/tempo
 frame_per_beat = sec_per_beat/frame_unit
 bopo2pinyin_path = 'filelists/dict_bopo2pinyin'
-searching_pool_path = 'filelists/m1/searching_pool'
+searching_pool_path = 'filelists/f1/searching_pool'
 # sil 祝你生日快樂|1 58 58 60 58 63 62|2 0.5 0.5 1 1 1 2
-input_path = 'filelists/m1/test.txt'  
+input_path = 'filelists/f1/test.txt'  
 output_path = input_path.split('.')[0] + '_pred.txt'
 print(output_path)
 
