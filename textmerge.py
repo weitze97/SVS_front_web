@@ -1,6 +1,7 @@
 from os import close
 import os
 import re
+
 #資料夾路徑記得更新到inputfiles存放的資料夾
 path01 = r'C:\nthu\SVMLAB\WEB\web_aaply\textmerge\line_multiple\inputfiles\01lyrics.txt'
 path02 = r'C:\nthu\SVMLAB\WEB\web_aaply\textmerge\line_multiple\inputfiles\02pitch.txt'
