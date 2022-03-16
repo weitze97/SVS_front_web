@@ -35,7 +35,7 @@ def home():
             filename = secure_filename(file.filename)
             # 上傳檔案到目標資料夾
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('download_file', name=filename))
+            return redirect(url_for('home'))
     '''elif request.method == 'GET':
         return render_template("home.html")   # 回傳網站首頁內容
     '''
