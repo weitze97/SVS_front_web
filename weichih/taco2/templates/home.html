@@ -8,7 +8,7 @@
         <title>SVS online</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
     </head>
-    <body onload="brython()">
+    <body>
         <center>
             <h1>線上歌聲合成系統</h1>
             <!--alert()會彈出訊息提示-->
@@ -22,9 +22,9 @@
                 <li>{{ message }}</li>
             {% endfor %}
             </ul>
-  {% endif %}
-{% endwith %}
-{% block body %}{% endblock %}
+            {% endif %}
+            {% endwith %}
+            {% block body %}{% endblock %}
         </center>
         <!--bootstrap預設將畫面分成12欄-->
         <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
@@ -65,10 +65,11 @@
                     </div>
                     <center>
                         <audio controls>
-                            <source src="../exp/pwg/soundfile/mel_1_gen.wav" type="audio/wav"
+                            <source src="../exp/pwg/soundfile/mel_1_gen.wav" type="audio/wav">
                         </audio>
                         <form method="post" action="/">
-                            <input type="submit" value="preprocess" name="action1">
+                            <input type="submit" value="preprocess" name="preprocess">
+                            <input type="submit" value="synthesize" name="synth">
                         </form>
                     </center>
                 </span>

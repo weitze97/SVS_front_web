@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template, request, redirect, url_for, flash
 from preprocess_v1_1_function import preprocess
+from synth_function import synth
 import os
 from werkzeug.utils import secure_filename
 
@@ -19,8 +20,11 @@ def allowed_file(filename):
 @app.route("/", methods=['GET', 'POST'])  # 創造出網域下名為"/"的網址
 def home():
     if request.method == 'POST':
-        if request.form.get('action1') == 'preprocess':
+        if request.form.get('preprocess') == 'preprocess':
             preprocess()
+            return render_template("home.html")
+        if request.form.get('synth') == 'synthesize':
+            synth()
             return render_template("home.html")
         # 檢查POST有沒有符合檔名
         if 'file' not in request.files:
