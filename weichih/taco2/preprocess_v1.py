@@ -10,7 +10,7 @@ from utils import load_filepaths_and_text
 from utils_preprocess import *
 
 
-tempo = 74
+tempo = 120
 frame_unit = 0.005  # 5-ms base
 sec_per_beat = 60/tempo
 frame_per_beat = sec_per_beat/frame_unit

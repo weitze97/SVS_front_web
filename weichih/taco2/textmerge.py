@@ -49,11 +49,11 @@ import re
 #資料夾路徑記得更新到inputfiles存放的資料夾
 #result 是合併成功和失敗原因顯示的紀錄
 #text是合並完成後要進入preprocees前的檔案
-path01 = r'C:\nthu\SVMLAB\WEB\weitze\SVS_front_web\weichih\taco2\web_inputfiles\01lyrics.txt'
-path02 = r'C:\nthu\SVMLAB\WEB\weitze\SVS_front_web\weichih\taco2\web_inputfiles\02pitch.txt'
-path03 = r'C:\nthu\SVMLAB\WEB\weitze\SVS_front_web\weichih\taco2\web_inputfiles\03notelength.txt'
-path04 = r'C:\nthu\SVMLAB\WEB\weitze\SVS_front_web\weichih\taco2\web_inputfiles\04result.txt'
-path05 = r'C:\nthu\SVMLAB\WEB\weitze\SVS_front_web\weichih\taco2\web_inputfiles\05text.txt'
+path01 = './web_inputfiles/01lyrics.txt'
+path02 = './web_inputfiles/02pitch.txt'
+path03 = './web_inputfiles/03notelength.txt'
+path04 = './web_inputfiles/04result.txt'
+path05 = './filelists/f1/test.txt'
 with open( path01 ,'r', encoding="utf-8") as f:
     lyrics = f.read().splitlines()
     lyrics_total_lines = len(lyrics)

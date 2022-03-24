@@ -27,7 +27,7 @@ import pdb
 # inference
 # python bin/decode.py --dumpdir ../taco2/exp/pwg/mel --outdir ../taco2/exp/pwg/soundfile
 
-def main():
+def decode():
     """Run decoding process."""
     parser = argparse.ArgumentParser(
         description="Decode dumped features with trained Parallel WaveGAN Generator "
@@ -35,13 +35,13 @@ def main():
     parser.add_argument("--feats-scp", "--scp", default=None, type=str,
                         help="kaldi-style feats.scp file. "
                              "you need to specify either feats-scp or dumpdir.")
-    parser.add_argument("--dumpdir", default=None, type=str,
+    parser.add_argument("--dumpdir", default="../taco2/exp/pwg/mel", type=str,
                         help="directory including feature files. "
                              "you need to specify either feats-scp or dumpdir.")
-    parser.add_argument("--outdir", type=str, required=True,
+    parser.add_argument("--outdir", type=str, required=False, default="../taco2/exp/pwg/soundfile",
                         help="directory to save generated speech.")
     parser.add_argument("--checkpoint", 
-                        default="/home/ahgmuse/database/pretrained_model/pwg_f1.pkl", 
+                        default="../pwg_f1.pkl", 
                         type=str, help="checkpoint file to be loaded.")
     parser.add_argument("--config", 
                         default="./bin/config.yml", type=str,
@@ -152,4 +152,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    decode()
