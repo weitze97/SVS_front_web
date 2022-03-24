@@ -7,10 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SVS online</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
+        <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
     </head>
     <body>
         <center>
             <h1>線上歌聲合成系統</h1>
+            <h2>Your Decode Results</h2>
             <!--alert()會彈出訊息提示-->
             <input type="button" class="btn btn-warning" value="點此查看使用方法" 
             onclick="alert('----------使用說明----------')">
@@ -29,50 +31,27 @@
         <!--bootstrap預設將畫面分成12欄-->
         <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
             <br>
-            <input id="file" name=file type="file" class="btn btn-primary btn-lg">
-            <input type=submit value=Upload>
-            <form method=post enctype=multipart/form-data action={{url_for('home')}}>
-                <input type=file name=file>
-                <input type=submit value=Upload>
-            </form>
             <div class="row">
                 <span class="border border-3 border-primary">
                     <div class="text-left">
-                        <p>
-                          <input type="text" id="text" placeholder="這裡是簡譜">
-                          <span id="output"></span>
-                          <script type="text/python" id="script1">
-                            from browser import document
-
-                            def show_text(e):
-                              document['output'].textContent = e.target.value;
-
-                            document['text'].bind('input', show_text)
-                          </script>
-                        </p>
-                        <p>
-                          <input type="text" id="text1" placeholder="這裡填歌詞">
-                          <span id="output1"></span>
-                          <script type="text/python" id="script2">
-                            from browser import document
-
-                            def show_text(e):
-                              document['output1'].textContent = e.target.value;
-
-                            document['text1'].bind('input', show_text)
-                          </script>
-                        </p>
-                    </div>
                     <center>
-                        <audio controls>
-                            <source src="../exp/pwg/soundfile/mel_1_gen.wav" type="audio/wav">
-                        </audio>
+                        <audio controls="controls" autoplay="autoplay" ></audio>
+                        <ul>
+                            {% for song in songs %}
+                                <li><a href="javascript:void(0);" onclick="playSong('{{song}}')">{{song}}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <script type="text/javascript">
+                            function playSong(song){
+                                $('audio').attr('src', '../static/exp/pwg/soundfile/'+song);
+                            }
+                        </script>
                         <form method="post" action="/">
                             <input type="submit" value="preprocess" name="preprocess">
                             <input type="submit" value="synthesize" name="synth">
                         </form>
-                        <a href="{{url_for('music')}}" class="btn btn-primary">See Previous Results</a>
                     </center>
+                </div>
                 </span>
             </div>
         </div>   
@@ -81,3 +60,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 </body>
 </html>
+

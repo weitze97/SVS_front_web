@@ -44,7 +44,7 @@ def load_model(hparams):
     return model
 
 
-def mel2wave_gl(mel, n_iters=30, scaling=1000, compress_factor='log10'):
+def mel2wave_gl(hparams, mel, n_iters=30, scaling=1000, compress_factor='log10'):
     # parameterize some functions
     stft_fn = STFT(
         filter_length=hparams.filter_length, 
@@ -127,7 +127,7 @@ def plot_f0_contour(lf0_targets, lf0_outputs, vuv_targets, vuv_outputs, save_dir
     plt.close()
 
 
-def validate(model, valset, batch_size, n_gpus,
+def validate(args, model, valset, batch_size, n_gpus,
              collate_fn, distributed_run, rank, hparams):
     """Handles all the validation scoring and printing"""
     model.eval()
@@ -182,8 +182,8 @@ def validate(model, valset, batch_size, n_gpus,
 
 
                 # Griffin-Lim
-                x_reconstruct = mel2wave_gl(mel_pred)
-                x_reconstruct_target = mel2wave_gl(mel_gt)
+                x_reconstruct = mel2wave_gl(hparams, mel_pred)
+                x_reconstruct_target = mel2wave_gl(hparams, mel_gt)
                                
                 if j == 0:
                     X = x_reconstruct
@@ -227,7 +227,7 @@ def validate(model, valset, batch_size, n_gpus,
 
 
 
-def train(output_directory, checkpoint_path, warm_start, n_gpus,
+def train(args, output_directory, checkpoint_path, warm_start, n_gpus,
           rank, group_name, hparams):
 
 
@@ -264,18 +264,31 @@ def train(output_directory, checkpoint_path, warm_start, n_gpus,
 
     model.eval()
 
-    validate(model, valset, hparams.batch_size, n_gpus, collate_fn, 
+    validate(args, model, valset, hparams.batch_size, n_gpus, collate_fn, 
             hparams.distributed_run, rank, hparams)
 
 
+
 def synth():
-    outdir = "./exp/pwg"
-    checkpath =  "../taco_f1"
-    warm_s = False
-    ngpu = 4
-    rk = 0
-    grpname = 'group_name'
-    hparams = create_hparams()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-o', '--output_directory', default="./exp/pwg", type=str,
+                        help='directory to save checkpoints')
+    parser.add_argument('-c', '--checkpoint_path', 
+                        default="../taco_f1",
+                        type=str, required=False, help='checkpoint path')
+    parser.add_argument('--warm_start', action='store_true',
+                        help='load model weights only, ignore specified layers')
+    parser.add_argument('--n_gpus', type=int, default=4,
+                        required=False, help='number of gpus')
+    parser.add_argument('--rank', type=int, default=0,
+                        required=False, help='rank of current gpu')
+    parser.add_argument('--group_name', type=str, default='group_name',
+                        required=False, help='Distributed group name')
+    parser.add_argument('--hparams', type=str,
+                        required=False, help='comma separated name=value pairs')
+
+    args = parser.parse_args()
+    hparams = create_hparams(args.hparams)
 
     torch.backends.cudnn.enabled = hparams.cudnn_enabled
     torch.backends.cudnn.benchmark = hparams.cudnn_benchmark
@@ -286,4 +299,8 @@ def synth():
     print("cuDNN Enabled:", hparams.cudnn_enabled)
     print("cuDNN Benchmark:", hparams.cudnn_benchmark)
 
-    train(outdir, checkpath, warm_s, ngpu, rk, grpname, hparams)
+    train(args, args.output_directory, args.checkpoint_path,
+          args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+
+if __name__ == '__main__':
+    synth()

@@ -44,6 +44,11 @@ def home():
         return render_template("home.html")   # 回傳網站首頁內容
     '''
     return render_template("home.html")
+
+@app.route("/music/", methods=['GET'])
+def music():
+    songs = os.listdir('static/exp/pwg/soundfile/')
+    return render_template("music.html", songs=songs)
     
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
