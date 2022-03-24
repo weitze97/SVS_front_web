@@ -12,7 +12,7 @@
     <body>
         <center>
             <h1>線上歌聲合成系統</h1>
-            <h2>Your Decode Results</h2>
+            <h2>歷史合成結果</h2>
             <!--alert()會彈出訊息提示-->
             <input type="button" class="btn btn-warning" value="點此查看使用方法" 
             onclick="alert('----------使用說明----------')">
@@ -46,10 +46,7 @@
                                 $('audio').attr('src', '../static/exp/pwg/soundfile/'+song);
                             }
                         </script>
-                        <form method="post" action="/">
-                            <input type="submit" value="preprocess" name="preprocess">
-                            <input type="submit" value="synthesize" name="synth">
-                        </form>
+                        <a href="{{url_for('home')}}" class="btn btn-primary">回到合成頁面！</a>
                     </center>
                 </div>
                 </span>
