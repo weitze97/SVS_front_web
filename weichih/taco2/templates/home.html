@@ -31,9 +31,24 @@
         <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
             <br>
             <form method=post enctype=multipart/form-data action={{url_for('home')}}>
-                <input type=file name=file class="btn btn-primary btn-lg">
+                <input type=file name=file1 class="btn btn-primary btn-lg">
                 <input type=submit value=Upload>
             </form>
+            <br>
+            <!--做了三個上傳的按鈕但還沒做三種檔案之上傳功能-->
+            <form method=post enctype=multipart/form-data action={{url_for('home')}}>
+                <input type=file name=f_lyrics class="btn btn-warning btn-lg">
+                <input type=submit value=Upload>
+            </form>
+            <form method=post enctype=multipart/form-data action={{url_for('home')}}>
+                <input type=file name=f_pitch class="btn btn-warning btn-lg">
+                <input type=submit value=Upload>
+            </form>
+            <form method=post enctype=multipart/form-data action={{url_for('home')}}>
+                <input type=file name=f_notelen class="btn btn-warning btn-lg">
+                <input type=submit value=Upload>
+            </form>
+            <!---->
             <div class="row">
                 <span class="border border-3 border-primary">
                     <div class="text-left">

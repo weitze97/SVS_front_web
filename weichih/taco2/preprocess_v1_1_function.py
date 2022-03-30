@@ -165,6 +165,11 @@ def preprocess():
     print('rule2: {:.2f}'.format(count_rule2/(count_all_rule)*100))
     print('rule3: {:.2f}'.format(count_rule3/(count_all_rule)*100))
 
+if __name__ == "__main__":
+    import sys
+    print(sys.path)
+    preprocess()
+
 '''
 未處理:
 (1) 若sil在中間
