@@ -1,17 +1,18 @@
 from flask import Flask
 from flask import render_template, request, redirect, url_for, flash
-from weichih.taco2.preprocess_v1_1_function import preprocess
-from weichih.taco2.synth_function import synth
-from weichih.parallel_wavegan.bin.decode_function import decode
+from taco2.preprocess_v1_1_function import preprocess
+from taco2.synth_function import synth
+from parallel_wavegan.bin.decode_function import decode
 import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)     # 建立Application物件
 
-UPLOAD_FOLDER = './taco2/filelists/f1'
+UPLOAD_FOLDER_1 = './taco2/filelists/f1'
+UPLOAD_FOLDER_2 = './web_inputfiles'
 ALLOWED_EXTENSIONS = {'txt', 'mid'}
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER_1
+app.config['UPLOAD_FOLDER_MERGE'] = UPLOAD_FOLDER_2
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -21,6 +22,8 @@ def allowed_file(filename):
 @app.route("/", methods=['GET', 'POST'])  # 創造出網域下名為"/"的網址
 def home():
     if request.method == 'POST':
+        #file = request.files['file1']
+        #f_lyric = request.files['f_lyric']
         if request.form.get('preprocess') == 'preprocess':
             preprocess()
             return render_template("home.html")
@@ -30,11 +33,11 @@ def home():
         if request.form.get('decode') == 'decode':
             decode()
             return render_template("home.html")
+        """
         # 檢查POST有沒有符合檔名
-        if 'file' not in request.files:
+        if 'file1' not in request.files:
             flash('No file part')
             return redirect(request.url)
-        file = request.files['file']
         # 如果沒有選檔案，瀏覽器會送出一個沒有檔名的檔案
         if file.filename == '':
             flash('No selected file')
@@ -44,9 +47,12 @@ def home():
             # 上傳檔案到目標資料夾
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('home'))
-    '''elif request.method == 'GET':
+        #上傳三種檔案的功能還沒做，只定義了上傳的資料夾！
+    '''
+    elif request.method == 'GET':
         return render_template("home.html")   # 回傳網站首頁內容
     '''
+    """
     return render_template("home.html")
 
 @app.route("/music/", methods=['GET'])
@@ -89,4 +95,5 @@ def upload_file():
 #    return render_template("pred.html")
 
 if __name__ == "__main__":
+    app.debug = True
     app.run() 
