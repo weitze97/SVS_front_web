@@ -44,7 +44,7 @@ def decode():
                         default="../pwg_f1.pkl", 
                         type=str, help="checkpoint file to be loaded.")
     parser.add_argument("--config", 
-                        default="./bin/config.yml", type=str,
+                        default="config.yml", type=str,
                         help="yaml format configuration file. if not explicitly provided, "
                              "it will be searched in the checkpoint directory. (default=None)")
     parser.add_argument("--verbose", type=int, default=1,
