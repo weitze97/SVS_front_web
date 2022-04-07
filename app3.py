@@ -22,8 +22,8 @@ def allowed_file(filename):
 @app.route("/", methods=['GET', 'POST'])  # 創造出網域下名為"/"的網址
 def home():
     if request.method == 'POST':
-        #file = request.files['file1']
-        #f_lyric = request.files['f_lyric']
+        file_all = request.files['file1']
+        f_lyric = request.files['f_lyric']
         if request.form.get('preprocess') == 'preprocess':
             preprocess()
             return render_template("home.html")
@@ -33,26 +33,36 @@ def home():
         if request.form.get('decode') == 'decode':
             decode()
             return render_template("home.html")
-        """
-        # 檢查POST有沒有符合檔名
+        # merged user file
+        # 檢查Upload按下時有無選擇檔案
         if 'file1' not in request.files:
             flash('No file part')
             return redirect(request.url)
         # 如果沒有選檔案，瀏覽器會送出一個沒有檔名的檔案
-        if file.filename == '':
+        if file_all.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+        if file_all and allowed_file(file_all.filename):
+            filename_all = secure_filename(file_all.filename)
             # 上傳檔案到目標資料夾
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file_all.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_all))
             return redirect(url_for('home'))
         #上傳三種檔案的功能還沒做，只定義了上傳的資料夾！
-    '''
+        # separated user file
+        if 'f_lyric' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        if f_lyric.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if f_lyric and allowed_file(f_lyric.filename):
+            fname_lyric = secure_filename(f_lyric.filename)
+            # 上傳檔案到目標資料夾
+            f_lyric.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], fname_lyric))
+            return redirect(url_for('home'))
     elif request.method == 'GET':
         return render_template("home.html")   # 回傳網站首頁內容
-    '''
-    """
+    
     return render_template("home.html")
 
 @app.route("/music/", methods=['GET'])
