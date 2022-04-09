@@ -3,16 +3,17 @@ from flask import render_template, request, redirect, url_for, flash
 from taco2.preprocess_v1_1_function import preprocess
 from taco2.synth_function import synth
 from parallel_wavegan.bin.decode_function import decode
+from web_inputfiles.textmerge import merge
 import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)     # 建立Application物件
 
 UPLOAD_FOLDER_1 = './taco2/filelists/f1'
-UPLOAD_FOLDER_2 = './web_inputfiles'
-ALLOWED_EXTENSIONS = {'txt', 'mid'}
+
+ALLOWED_EXTENSIONS = {'txt', 'mid', 'bak'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER_1
-app.config['UPLOAD_FOLDER_MERGE'] = UPLOAD_FOLDER_2
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -21,51 +22,66 @@ def allowed_file(filename):
 # 建立網站首頁的回應方式
 @app.route("/", methods=['GET', 'POST'])  # 創造出網域下名為"/"的網址
 def home():
-    if request.method == 'POST':
-        file_all = request.files['file1']
-        f_lyric = request.files['f_lyric']
-        if request.form.get('preprocess') == 'preprocess':
-            preprocess()
-            return render_template("home.html")
-        if request.form.get('synth') == 'synthesize':
-            synth()
-            return render_template("home.html")
-        if request.form.get('decode') == 'decode':
-            decode()
-            return render_template("home.html")
-        # merged user file
-        # 檢查Upload按下時有無選擇檔案
-        if 'file1' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        # 如果沒有選檔案，瀏覽器會送出一個沒有檔名的檔案
-        if file_all.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file_all and allowed_file(file_all.filename):
-            filename_all = secure_filename(file_all.filename)
-            # 上傳檔案到目標資料夾
-            file_all.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_all))
-            return redirect(url_for('home'))
-        #上傳三種檔案的功能還沒做，只定義了上傳的資料夾！
-        # separated user file
-        if 'f_lyric' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        if f_lyric.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if f_lyric and allowed_file(f_lyric.filename):
-            fname_lyric = secure_filename(f_lyric.filename)
-            # 上傳檔案到目標資料夾
-            f_lyric.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], fname_lyric))
-            return redirect(url_for('home'))
-    elif request.method == 'GET':
+    if request.method == 'GET':
         return render_template("home.html")   # 回傳網站首頁內容
-    
     return render_template("home.html")
 
-@app.route("/music/", methods=['GET'])
+@app.route("/oneclick", methods=['GET', 'POST'])
+def oneclick():
+    if request.method == 'POST':
+        if request.form.get('upload') == '上傳單一檔案':
+            file = request.files['f_done']
+            if file and allowed_file(file.filename):
+                # 上傳檔案到目標資料夾
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], test.txt))
+                return render_template("oneclick.html")
+        if request.form.get('start') == '一鍵合成！':
+            return redirect(url_for('svs_process'))
+    return render_template("oneclick.html")
+
+
+@app.route("/svs_process", methods=['GET', 'POST'])
+def svs_process():
+    if request.method == 'GET':
+        preprocess()
+        synth()
+        decode()
+        return redirect(url_for('home'))
+    return render_template("svs_process.html")
+
+@app.route("/mergefile", methods=['GET', 'POST'])
+def mergefile():
+    UPLOAD_FOLDER_2 = './web_inputfiles'
+    app.config['UPLOAD_FOLDER_MERGE'] = UPLOAD_FOLDER_2
+    if request.method == 'POST':
+        if request.form.get('upload') == '上傳歌詞':
+            file = request.files['f_lyrics']
+            if  file and allowed_file(file.filename):
+                # 上傳檔案到目標資料夾
+                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '01lyrics.txt'))
+                return render_template("mergefile.html")
+
+        if request.form.get('upload') == '上傳音高':
+            file = request.files['f_pitch']
+            if  file and allowed_file(file.filename):
+                # 上傳檔案到目標資料夾
+                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '02pitch.txt'))
+                return render_template("mergefile.html")
+
+        if request.form.get('upload') == '上傳音長':
+            file = request.files['f_notelen']
+            if  file and allowed_file(file.filename):
+                # 上傳檔案到目標資料夾
+                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '03notelength.txt'))
+                return render_template("mergefile.html")
+
+        if request.form.get('start') == '一鍵合併並合成！':
+            merge()
+            return redirect(url_for('svs_process'))
+    return render_template("mergefile.html")
+
+
+@app.route("/music", methods=['GET'])
 def music():
     songs = os.listdir('static/exp/pwg/soundfile/')
     return render_template("music.html", songs=songs)
@@ -86,7 +102,8 @@ def upload_file():
             filename = secure_filename(file.filename)
             # 上傳檔案到目標資料夾
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('download_file', name=filename))
+            return redirect(url_for('upload_file'))
+            #return redirect(url_for('download_file', name=filename))
     return '''
     <!doctype html> 
     <title>Upload new File</title>
@@ -98,12 +115,5 @@ def upload_file():
     '''
 
 
-
-#@app.route("/pred")
-#def pred():
-#    preprocess()
-#    return render_template("pred.html")
-
 if __name__ == "__main__":
-    app.debug = True
-    app.run() 
+    app.run(debug=True) 

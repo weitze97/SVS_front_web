@@ -8,8 +8,11 @@ import pdb
 from taco2.bopomofo.main import trans_sentense
 from taco2.utils import load_filepaths_and_text
 from taco2.utils_preprocess import *
+import sys
+    
 
 def preprocess():
+    print(sys.path)
     tempo = 120
     frame_unit = 0.005  # 5-ms base
     sec_per_beat = 60/tempo
