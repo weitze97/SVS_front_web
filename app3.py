@@ -6,12 +6,14 @@ from parallel_wavegan.bin.decode_function import decode
 from web_inputfiles.textmerge import merge
 import os
 from werkzeug.utils import secure_filename
+from backupfunc import backup_s
+import deletefunc as df
 
 app = Flask(__name__)     # 建立Application物件
 
 UPLOAD_FOLDER_1 = './taco2/filelists/f1'
 
-ALLOWED_EXTENSIONS = {'txt', 'mid', 'bak'}
+ALLOWED_EXTENSIONS = {'txt', 'bak'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER_1
 
 
@@ -33,7 +35,7 @@ def oneclick():
             file = request.files['f_done']
             if file and allowed_file(file.filename):
                 # 上傳檔案到目標資料夾
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], test.txt))
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], 'test.txt'))
                 return render_template("oneclick.html")
         if request.form.get('start') == '一鍵合成！':
             return redirect(url_for('svs_process'))
@@ -43,6 +45,8 @@ def oneclick():
 @app.route("/svs_process", methods=['GET', 'POST'])
 def svs_process():
     if request.method == 'GET':
+        df.delete_mel()
+        df.delete_s()
         preprocess()
         synth()
         decode()
@@ -81,10 +85,28 @@ def mergefile():
     return render_template("mergefile.html")
 
 
-@app.route("/music", methods=['GET'])
+@app.route("/music/", methods=['GET', 'POST'])
 def music():
+    his_songs = os.listdir('static/exp/pwg/soundfiles_b/')
     songs = os.listdir('static/exp/pwg/soundfile/')
-    return render_template("music.html", songs=songs)
+    if request.method == 'GET':
+        return render_template("music.html", songs=songs , his_songs=his_songs)
+    elif request.method == 'POST':
+        if request.form.get('save') == 'save':
+            #獲取使用者取名
+            new_name = request.form["nm"]
+            backup_s(new_name)
+            his_songs = os.listdir('static/exp/pwg/soundfiles_b/')
+            songs = os.listdir('static/exp/pwg/soundfile/')
+            return render_template("music.html", songs=songs , his_songs=his_songs)
+        #討論後決定要不要留，amy覺得可以拿掉
+        if request.form.get('clear') == 'clear':
+            #df.delete_mel()
+            df.delete_s()
+            his_songs = os.listdir('static/exp/pwg/soundfiles_b/')
+            songs = os.listdir('static/exp/pwg/soundfile/')
+            return render_template("music.html", songs=songs , his_songs=his_songs)
+    return render_template("music.html", songs=songs , his_songs=his_songs)
     
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -116,4 +138,4 @@ def upload_file():
 
 
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run(debug=False) 
