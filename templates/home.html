@@ -8,50 +8,47 @@
         <title>SVS online</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
     </head>
-    <body onload="brython()">
+    <body>
         <center>
             <h1>線上歌聲合成系統</h1>
-            <!--<a href = "https://drive.google.com/file/d/1o-nZXO96KIFS_SxGBNcC0T4j_8lk5pp7/view?usp=sharing" class = "btn btn-link">點此查看使用方法
-              <script>
-                alert("123")
-              </script>
-            </a>-->
+            <h4>Audio and Hearing Group, NTHU</h4>
             <!--alert()會彈出訊息提示-->
-            <input type="button" class="btn btn-warning" value="點此查看使用方法" 
-            onclick="alert('----------使用說明----------')">
+            <input type="button" class="btn btn-light" value="點此查看使用方法" 
+            onclick="alert('----------使用說明----------')">        
         </center>
         <!--bootstrap預設將畫面分成12欄-->
         <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
+            <h2>使用說明：</h2>
+            <h3>我們提供兩種檔案上傳類型，取決於您有無現成符合本系統可運行的檔案格式</h3>
             <br>
-            <a href = "#" class = "btn btn-warning">上傳MIDI檔</a>
             <div class="row">
-                <span class="border border-3 border-primary">
-                    <div class="text-left">
-                        <p>
-                          <input type="text" id="text" placeholder="這裡是簡譜">
-                          <span id="output"></span>
-                          <script type="text/python" id="script1">
-                            from browser import document
-
-                            def show_text(e):
-                              document['output'].textContent = e.target.value;
-
-                            document['text'].bind('input', show_text)
-                          </script>
-                        </p>
-                        <p>
-                          <input type="text" id="text1" placeholder="這裡填歌詞">
-                          <span id="output1"></span>
-                          <script type="text/python" id="script2">
-                            from browser import document
-
-                            def show_text(e):
-                              document['output1'].textContent = e.target.value;
-
-                            document['text1'].bind('input', show_text)
-                          </script>
-                        </p>
+                <div class="col">
+                    <div class="item">
+                    <h5>如果您的檔案符合我們的格式：</h5>
+                    <center>
+                    <a href="{{url_for('oneclick')}}" class="btn btn-outline-dark btn-lg">一鍵合成點此</a>
+                    </center>
                     </div>
+                </div>
+                <div class="col">
+                    <div class="item">
+                    <h5>如果您的檔案符合我們的格式：</h5>
+                    <center>
+                    <a href="{{url_for('mergefile')}}" class="btn btn-outline-dark btn-lg">一鍵合併並合成點此</a>
+                    </center>
+                    </div>
+                </div>
+            </div>           
+            <div class="row">
+                <span class="border border-3 border-dark">
+                    <center>
+                        <h4>請聽聽看這個範例：</h4>
+                        <audio controls>
+                            <source src="static/exp/pwg/soundfile/birthday_song.wav" type="audio/wav">
+                        </audio>
+                        <br>
+                        <a href="{{url_for('music')}}" class="btn btn-dark">歷史合成結果</a>
+                    </center>
                 </span>
             </div>
         </div>   

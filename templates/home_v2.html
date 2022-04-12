@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SVS online</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
+    </head>
+    <body>
+        <center>
+            <h1>線上歌聲合成系統</h1>
+            <!--alert()會彈出訊息提示-->
+            <input type="button" class="btn btn-warning" value="點此查看使用方法" 
+            onclick="alert('----------使用說明----------')">
+            
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            {% block body %}{% endblock %}
+        </center>
+        
+        <!--bootstrap預設將畫面分成12欄-->
+        <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
+            <br>
+            <form method=post enctype=multipart/form-data action={{url_for('home')}}>
+                <input type=file name=file1 class="btn btn-primary btn-lg">
+                <input type=submit name=file1 value=Upload>
+            </form>
+            <br>
+            <!--做了三個上傳的按鈕但還沒做三種檔案之上傳功能-->
+            <form method=post enctype=multipart/form-data action={{url_for('home')}}>
+                <input type=file name=f_lyrics class="btn btn-warning btn-lg">
+                <input type=submit value=Upload>
+            </form>
+            <form method=post enctype=multipart/form-data action={{url_for('home')}}>
+                <input type=file name=f_pitch class="btn btn-warning btn-lg">
+                <input type=submit value=Upload>
+            </form>
+            <form method=post enctype=multipart/form-data action={{url_for('home')}}>
+                <input type=file name=f_notelen class="btn btn-warning btn-lg">
+                <input type=submit value=Upload>
+            </form>
+            <!---->
+            <div class="row">
+                <span class="border border-3 border-primary">
+                    <div class="text-left">
+                        <p>
+                          <input type="text" id="text" placeholder="這裡是簡譜">
+                          <span id="output"></span>
+                          <script type="text/python" id="script1">
+                            from browser import document
+
+                            def show_text(e):
+                              document['output'].textContent = e.target.value;
+
+                            document['text'].bind('input', show_text)
+                          </script>
+                        </p>
+                        <p>
+                          <input type="text" id="text1" placeholder="這裡填歌詞">
+                          <span id="output1"></span>
+                          <script type="text/python" id="script2">
+                            from browser import document
+
+                            def show_text(e):
+                              document['output1'].textContent = e.target.value;
+
+                            document['text1'].bind('input', show_text)
+                          </script>
+                        </p>
+                    </div>
+                    <center>
+                        <h4>請聽聽看這個範例：</h4>
+                        <audio controls>
+                            <source src="static/exp/pwg/soundfile/birthday_song.wav" type="audio/wav">
+                        </audio>
+                        <form method="post" action="/">
+                            <input type="submit" name="preprocess" value="preprocess">
+                            <input type="submit" name="synth" value="synthesize">
+                            <input type="submit" name="decode" value="decode">
+                        </form>
+                        <a href="{{url_for('music')}}" class="btn btn-primary">歷史合成結果</a>
+                    </center>
+                </span>
+            </div>
+        </div>   
+        
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+</body>
+</html>

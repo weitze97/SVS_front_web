@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SVS online</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
+    </head>
+    <body>
+        <center>
+            <h1>線上歌聲合成系統</h1>
+            <!--alert()會彈出訊息提示-->
+            <input type="button" class="btn btn-warning" value="點此查看使用方法" 
+            onclick="alert('----------使用說明----------')">
+        </center>
+        <br><br>
+        <!--bootstrap預設將畫面分成12欄-->
+        <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
+            <!--做了三個上傳的按鈕但還沒做三種檔案之上傳功能-->
+        <div class="row">    
+            <div class="col">
+                <div class="item">
+                <form method=post enctype=multipart/form-data action="">
+                    <input type=file name=f_lyrics class="btn btn-warning">
+                    <input type=submit name=upload value=上傳歌詞>
+                </form>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item">
+                <form method=post enctype=multipart/form-data action="">
+                    <input type=file name=f_pitch class="btn btn-warning">
+                    <input type=submit name=upload value=上傳音高>
+                </form>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item">
+                <form method=post enctype=multipart/form-data action="">
+                    <input type=file name=f_notelen class="btn btn-warning">
+                    <input type=submit name=upload value=上傳音長>
+                </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <form method="post" action="">
+                <center>
+                <input type="submit" name="start" value="一鍵合併並合成！" class="btn btn-primary btn-lg">
+                </center>
+            </form>
+        </div>
+        </div>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"  integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    </body>
+</html>

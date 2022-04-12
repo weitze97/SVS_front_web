@@ -7,7 +7,7 @@ def merge():
     path02 = './web_inputfiles/02pitch.txt'
     path03 = './web_inputfiles/03notelength.txt'
     path04 = './web_inputfiles/04result.txt'
-    path05 = './filelists/f1/test.txt'
+    path05 = './taco2/filelists/f1/test.txt'
     with open( path01 ,'r', encoding="utf-8") as f:
         lyrics = f.read().splitlines()
         lyrics_total_lines = len(lyrics)
