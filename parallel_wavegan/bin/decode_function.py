@@ -38,8 +38,9 @@ def decode():
     parser.add_argument("--dumpdir", default="./taco2/exp/pwg/mel", type=str,
                         help="directory including feature files. "
                              "you need to specify either feats-scp or dumpdir.")
-    parser.add_argument("--outdir", type=str, required=False, default="./taco2/exp/pwg/soundfile",
-                        help="directory to save generated speech.")
+    parser.add_argument("--outdir", type=str, required=False, default="./static/exp/pwg/soundfile/",
+                        help="directory to save generated speech.") 
+    #original ./taco2/exp/pwg/soundfile
     parser.add_argument("--checkpoint", 
                         default="./pwg_f1.pkl", 
                         type=str, help="checkpoint file to be loaded.")
