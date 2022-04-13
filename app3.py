@@ -28,6 +28,10 @@ def home():
         return render_template("home.html")   # 回傳網站首頁內容
     return render_template("home.html")
 
+@app.errorhandler(werkzeug.exception.BadRequest)
+def handle_bad_request(e):
+	return 'bad request!', 400
+
 @app.route("/oneclick", methods=['GET', 'POST'])
 def oneclick():
     if request.method == 'POST':
