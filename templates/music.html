@@ -15,17 +15,6 @@
             <!--alert()會彈出訊息提示-->
             <input type="button" class="btn btn-warning" value="點此查看使用方法" 
             onclick="alert('----------使用說明----------')">
-            <title>My Application</title>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul class=flashes>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-            {% block body %}{% endblock %}
         </center>
         <!--bootstrap預設將畫面分成12欄-->
         <div class="container-fuild">   <!--container為定寬容器；加上fluid:不定寬容器-->

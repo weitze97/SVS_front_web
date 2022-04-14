@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, abort
 from taco2.preprocess_v1_1_function import preprocess
 from taco2.synth_function import synth
 from parallel_wavegan.bin.decode_function import decode
@@ -25,12 +25,9 @@ def allowed_file(filename):
 @app.route("/", methods=['GET', 'POST'])  # 創造出網域下名為"/"的網址
 def home():
     if request.method == 'GET':
+        abort(500) #手動製造錯誤
         return render_template("home.html")   # 回傳網站首頁內容
     return render_template("home.html")
-
-@app.errorhandler(werkzeug.exception.BadRequest)
-def handle_bad_request(e):
-	return 'bad request!', 400
 
 @app.route("/oneclick", methods=['GET', 'POST'])
 def oneclick():
@@ -140,6 +137,16 @@ def upload_file():
     </form>
     '''
 
+# Error Handlers
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("errorpage/404.html")
+
+@app.errorhandler(500)
+def server_error(e):
+    app.logger.error(f"Server error: {e}, route: {request.url}")
+    return render_template("errorpage/500.html")
+
 
 if __name__ == "__main__":
-    app.run(debug=False) 
+    app.run(debug=True) 
