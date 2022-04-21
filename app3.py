@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, abort
 from taco2.preprocess_v1_1_function import preprocess
 from taco2.synth_function import synth
 from parallel_wavegan.bin.decode_function import decode
@@ -45,6 +45,7 @@ def oneclick():
 @app.route("/svs_process", methods=['GET', 'POST'])
 def svs_process():
     if request.method == 'GET':
+        #abort(500) #手動製造錯誤
         df.delete_mel()
         df.delete_s()
         preprocess()
@@ -135,6 +136,16 @@ def upload_file():
       <input type=submit value=Upload>
     </form>
     '''
+
+# Error Handlers
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("errorpage/404.html")
+
+@app.errorhandler(500)
+def server_error(e):
+    app.logger.error(f"Server error: {e}, route: {request.url}")
+    return render_template("errorpage/500.html")
 
 
 if __name__ == "__main__":
