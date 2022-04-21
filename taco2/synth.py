@@ -277,6 +277,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--checkpoint_path', 
                         default="/home/ahgmuse/database/pretrained_model/taco_f1",
                         type=str, required=False, help='checkpoint path')
+                        #/home/ahgmuse/database/pretrained_model/taco_f1
     parser.add_argument('--warm_start', action='store_true',
                         help='load model weights only, ignore specified layers')
     parser.add_argument('--n_gpus', type=int, default=4,
