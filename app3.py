@@ -25,8 +25,8 @@ def allowed_file(filename):
 @app.route("/", methods=['GET', 'POST'])  # 創造出網域下名為"/"的網址
 def home():
     if request.method == 'GET':
-        return render_template("home.html")   # 回傳網站首頁內容
-    return render_template("home.html")
+        return render_template("home_v3.html")   # 回傳網站首頁內容
+    return render_template("home_v3.html")
 
 @app.route("/oneclick", methods=['GET', 'POST'])
 def oneclick():
@@ -149,4 +149,4 @@ def server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=False) 
+    app.run(threaded=True, debug=False) 
