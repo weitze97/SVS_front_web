@@ -25,7 +25,6 @@ def allowed_file(filename):
 @app.route("/", methods=['GET', 'POST'])  # 創造出網域下名為"/"的網址
 def home():
     if request.method == 'GET':
-        abort(500) #手動製造錯誤
         return render_template("home.html")   # 回傳網站首頁內容
     return render_template("home.html")
 
@@ -46,6 +45,7 @@ def oneclick():
 @app.route("/svs_process", methods=['GET', 'POST'])
 def svs_process():
     if request.method == 'GET':
+        #abort(500) #手動製造錯誤
         df.delete_mel()
         df.delete_s()
         preprocess()
@@ -149,4 +149,4 @@ def server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run(debug=False) 
