@@ -38,7 +38,12 @@ def oneclick():
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], 'test.txt'))
                 return render_template("oneclick.html")
         if request.form.get('start') == '一鍵合成！':
-            return redirect(url_for('svs_process'))
+            df.delete_mel()
+            df.delete_s()
+            preprocess()
+            synth()
+            decode()
+            return redirect(url_for('music'))
     return render_template("oneclick.html")
 
 
@@ -149,4 +154,4 @@ def server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(threaded=True, debug=False) 
+    app.run(debug=True) 
