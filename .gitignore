@@ -10,3 +10,5 @@ parallel_wavegan/utils/__pycache__/
 taco2/exp/pwg/soundfile/*
 taco2/exp/pwg/mel/*
 taco2/exp/pwg/figure/*
+parallel_wavegan/models/__pycache__/
+parallel_wavegan/layers/__pycache__/
