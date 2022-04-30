@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request, redirect, url_for, flash, abort
+from flask import render_template, request, redirect, url_for, flash, abort, jsonify
 from taco2.preprocess_v1_1_function import preprocess
 from taco2.synth_function import synth
 from parallel_wavegan.bin.decode_function import decode
@@ -58,6 +58,22 @@ def svs_process():
         decode()
         return redirect(url_for('home'))
     return render_template("svs_process.html")
+'''
+@app.route("/svs_process")
+def svs_process():
+    num_progress = 0
+    df.delete_mel()
+    df.delete_s()
+    num_progress = 10
+    preprocess()
+    num_progress = 25
+    synth()
+    num_progress = 70
+    decode()
+    num_progress = 100
+    return jsonify({'res': num_progress})
+'''
+
 
 @app.route("/mergefile", methods=['GET', 'POST'])
 def mergefile():
