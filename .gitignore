@@ -1,5 +1,9 @@
 taco_f1
 pwg_f1.pkl
-./web_inputfiles/__pycache__/
-./__pycache__/
-./taco2/__pycache__/
+web_inputfiles/__pycache__/
+__pycache__/
+taco2/__pycache__/
+parallel_wavegan/__pycache__/
+parallel_wavegan/bin/__pycache__/
+parallel_wavegan/datasets/__pycache__/
+parallel_wavegan/utils/__pycache__/
