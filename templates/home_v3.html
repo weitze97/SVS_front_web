@@ -163,13 +163,19 @@
             </button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">SVM LAB</h5>
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">線上歌聲合成系統</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                   <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">合成首頁</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{url_for('music')}}">合成結果</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://ieeexplore.ieee.org/document/9689619" target="_blank">應用技術</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="https://www.ee.nthu.edu.tw/ywliu/" target="_blank">了解更多</a>
