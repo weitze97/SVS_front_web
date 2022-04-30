@@ -38,12 +38,12 @@ def oneclick():
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], 'test.txt'))
                 return render_template("oneclick.html")
         if request.form.get('start') == '一鍵合成！':
-            df.delete_mel()
-            df.delete_s()
-            preprocess()
-            synth()
-            decode()
-            return redirect(url_for('music'))
+        #     df.delete_mel()
+        #     df.delete_s()
+        #     preprocess()
+        #     synth()
+        #     decode()
+            return redirect(url_for('svs_process'))
     return render_template("oneclick.html")
 
 
@@ -56,7 +56,7 @@ def svs_process():
         preprocess()
         synth()
         decode()
-        return redirect(url_for('home'))
+        return redirect(url_for('music'))
     return render_template("svs_process.html")
 '''
 @app.route("/svs_process")
