@@ -7,3 +7,6 @@ parallel_wavegan/__pycache__/
 parallel_wavegan/bin/__pycache__/
 parallel_wavegan/datasets/__pycache__/
 parallel_wavegan/utils/__pycache__/
+taco2/exp/pwg/soundfile/*
+taco2/exp/pwg/mel/*
+taco2/exp/pwg/figure/*
