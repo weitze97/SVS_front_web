@@ -12,3 +12,7 @@ taco2/exp/pwg/mel/*
 taco2/exp/pwg/figure/*
 parallel_wavegan/models/__pycache__/
 parallel_wavegan/layers/__pycache__/
+static/exp/pwg/soundfile/*
+web_inputfiles/*.txt
+taco2/filelists/f1/test.txt
+taco2/filelists/f1/test_pred.txt
