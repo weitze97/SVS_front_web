@@ -20,6 +20,7 @@
             h3 {font-weight:900;}
             h4 {font-weight:900;}
             h5 {font-weight:900;}
+            h8 {font-weight:900;}
         </style>
 
     </head>
@@ -48,12 +49,7 @@
                         <strong>2.換氣聲音:</strong>在欲換氣處的歌詞輸入'sil'<br>
                         <strong>3.注意事項:</strong>請勿有空白行出現，檔案使用.txt格式<br>
                         <strong>4.範例:</strong><br>
-                        <div class="card" style="width: 18rem;">
-                            <img src="/static/images/fig1_1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">輸入歌詞文字檔範例</p>
-                            </div>
-                        </div>
+                        <img src="/static/images/fig1_1.jpg" class="card-img-top" alt="...">
                         <br>
                     </div>
                   </div>
@@ -68,18 +64,11 @@
                     <div class="accordion-body">
                         <strong>1.音高數限制:</strong>與歌詞字數和句數需相符<br>
                         <strong>2.換氣音高:</strong>在欲換氣處的音高輸入'1'<br>
-                        <strong>3.音高標註方法:</strong>請使用midi規範，以下提供相關連結及對照表參考<br>
-                        <a href="http://sonic-pi.mehackit.org/exercises/ch/01-introduction/02-play-a-melody.html">http://sonic-pi.mehackit.org/exercises/ch/01-introduction/02-play-a-melody.html</a><br>
-                        <img src="/static/images/fig2.png" class="card-img-top" alt="...">
-                        <img src="/static/images/midi_notes_ch.png" class="card-img-top" alt="...">
+                        <strong>3.音高標註方法:</strong>請使用midi規範，以下提供對照表參考(受資料限制，僅鍵盤上有標示之數字或有做黃色標記的音高有辦法合成)<br>
+                        <img src="/static/images/fig2.jpg" class="card-img-top" alt="...">
                         <strong>4.注意事項:</strong>請勿有空白行出現，檔案使用.txt格式<br>
                         <strong>5.範例:</strong><br>
-                        <div class="card" style="width: 18rem;">
-                            <img src="/static/images/fig2_1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">輸入音高文字檔範例</p>
-                            </div>
-                        </div>
+                        <img src="/static/images/fig2_1.jpg" class="card-img-top" alt="...">
                         <br>
                     </div>
                   </div>
@@ -93,19 +82,16 @@
                   <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
                         <strong>1.音長數限制:</strong>與歌詞字數和句數需相符<br>
-                        <strong>2.注意事項:</strong>請勿有空白行出現，檔案使用.txt格式<br>
-                        <strong>3.範例:</strong><br>
-                        <div class="card" style="width: 18rem;">
-                            <img src="/static/images/fig5_1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">輸入節拍文字檔範例</p>
-                            </div>
-                        </div>
+                        <strong>2.節奏預設:</strong>節奏預設為120bpm，四分音符=輸入1、八分音符輸入0.5，以此類推<br>
+                        <strong>3.注意事項:</strong>請勿有空白行出現，檔案使用.txt格式<br>
+                        <strong>4.範例:</strong><br>
+                        <img src="/static/images/fig5_1.jpg" class="card-img-top" alt="...">
                         <br>
                     </div>
                   </div>
                 </div>
             </div>
+            <br>
             <h8>接著使用"|"符號將歌詞、音高、節拍串接起來(方法一)，或是直接交給網頁幫您串接(方法二)<br>
             以下有圖示可供參考:</h8>
             <br>
@@ -114,12 +100,7 @@
                     <div class="item">
                     <h5>方法一：</h5>
                     <center>
-                    <div class="card" style="width: 18rem;">
-                        <img src="/static/images/fig6_1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">使用"|"符號串接，僅單一.txt檔</p>
-                        </div>
-                    </div>
+                    <img src="/static/images/fig6_1.jpg" class="card-img-top" alt="...">
                     <a href="{{url_for('oneclick')}}" class="btn btn-outline-dark btn-lg">一鍵合成點此</a>
                     </center>
                     </div>
@@ -128,12 +109,9 @@
                     <div class="item">
                     <h5>方法二：</h5>
                     <center>
-                    <div class="card" style="width: 18rem;">
-                        <img src="/static/images/fig6.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">有個別.txt檔即可</p>
-                        </div>
-                    </div>
+                    <img src="/static/images/fig1_1.jpg" class="card-img-top" alt="...">
+                    <img src="/static/images/fig2_1.jpg" class="card-img-top" alt="...">
+                    <img src="/static/images/fig5_1.jpg" class="card-img-top" alt="...">
                     <a href="{{url_for('mergefile')}}" class="btn btn-outline-dark btn-lg">一鍵合併並合成點此</a>
                     </center>
                     </div>
@@ -144,10 +122,14 @@
                     <center>
                         <h4>請聽聽看這個範例：</h4>
                         <audio controls>
+<<<<<<< HEAD
                             <source src="static/exp/pwg/soundfiles_b/pwg_birthday.wav" type="audio/wav">
+=======
+                            <source src="static\exp\pwg\soundfiles_b\butterfly.wav" type="audio/wav">
+>>>>>>> main
                         </audio>
                         <br>
-                        <a href="{{url_for('music')}}" class="btn btn-dark">歷史合成結果</a>
+                        <a href="{{url_for('music')}}" class="btn btn-dark">合成結果</a>
                     </center>
                 </span>
             </div>
@@ -155,7 +137,7 @@
         <!--導覽列-->
         <nav class="navbar fixed-top navbar-light bg-light ">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{url_for('home')}}">
               <img src="/static/images/icon2.png" alt="" width="30" height="24" class="d-inline-block align-text-top"> SVM LAB
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -163,13 +145,19 @@
             </button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">SVM LAB</h5>
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">線上歌聲合成系統</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                   <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">合成首頁</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{url_for('music')}}">合成結果</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://ieeexplore.ieee.org/document/9689619" target="_blank">應用技術</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="https://www.ee.nthu.edu.tw/ywliu/" target="_blank">了解更多</a>
