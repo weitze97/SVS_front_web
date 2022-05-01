@@ -146,7 +146,7 @@ def decode():
 
             count += 1
             
-        sf.write(os.path.join(config["outdir"], "pwg_birthday.wav"),
+        sf.write(os.path.join(config["outdir"], "svs_result.wav"),
                  X, config["sampling_rate"], "PCM_16")
 
     # report average RTF

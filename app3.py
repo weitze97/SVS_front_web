@@ -8,7 +8,6 @@ import os
 from werkzeug.utils import secure_filename
 from backupfunc import backup_s
 import deletefunc as df
-import argparse
 
 app = Flask(__name__)     # 建立Application物件
 
@@ -53,6 +52,7 @@ def svs_process():
         df.deletefiles('taco2/exp/pwg/figure/*.png')
         df.deletefiles('taco2/exp/pwg/soundfile/*.wav')
         df.deletefiles('static/exp/pwg/soundfile/*.wav')
+        df.deletefiles('web_inputfiles/*.txt')
         preprocess()
         synth()
         decode()
@@ -130,6 +130,7 @@ def music():
             df.deletefiles('taco2/exp/pwg/soundfile/*.wav')
             df.deletefiles('static/exp/pwg/soundfile/*.wav')
             df.deletefiles('taco2/filelists/f1/test*.txt')
+            df.deletefiles('web_inputfiles/*.txt')
             his_songs = os.listdir('static/exp/pwg/soundfiles_b/')
             songs = os.listdir('static/exp/pwg/soundfile/')
             return render_template("music.html", songs=songs , his_songs=his_songs)
