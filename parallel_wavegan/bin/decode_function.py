@@ -29,29 +29,30 @@ import pdb
 
 def decode():
     """Run decoding process."""
-    parser = argparse.ArgumentParser(
-        description="Decode dumped features with trained Parallel WaveGAN Generator "
-                    "(See detail in parallel_wavegan/bin/decode.py).")
-    parser.add_argument("--feats-scp", "--scp", default=None, type=str,
-                        help="kaldi-style feats.scp file. "
-                             "you need to specify either feats-scp or dumpdir.")
-    parser.add_argument("--dumpdir", default="./taco2/exp/pwg/mel", type=str,
-                        help="directory including feature files. "
-                             "you need to specify either feats-scp or dumpdir.")
-    parser.add_argument("--outdir", type=str, required=False, default="./static/exp/pwg/soundfile/",
-                        help="directory to save generated speech.") 
-    #original ./taco2/exp/pwg/soundfile
-    parser.add_argument("--checkpoint", 
-                        default="./pwg_f1.pkl", 
-                        type=str, help="checkpoint file to be loaded.")
-    parser.add_argument("--config", 
-                        default="./parallel_wavegan/bin/config.yml", type=str,
-                        help="yaml format configuration file. if not explicitly provided, "
-                             "it will be searched in the checkpoint directory. (default=None)")
-    parser.add_argument("--verbose", type=int, default=1,
-                        help="logging level. higher is more logging. (default=1)")
-    args = parser.parse_args()
-
+    # parser = argparse.ArgumentParser(
+    #     description="Decode dumped features with trained Parallel WaveGAN Generator "
+    #                 "(See detail in parallel_wavegan/bin/decode.py).")
+    # parser.add_argument("--feats-scp", "--scp", default=None, type=str,
+    #                     help="kaldi-style feats.scp file. "
+    #                          "you need to specify either feats-scp or dumpdir.")
+    # parser.add_argument("--dumpdir", default="./taco2/exp/pwg/mel", type=str,
+    #                     help="directory including feature files. "
+    #                          "you need to specify either feats-scp or dumpdir.")
+    # parser.add_argument("--outdir", type=str, required=False, default="./static/exp/pwg/soundfile/",
+    #                     help="directory to save generated speech.") 
+    # #original ./taco2/exp/pwg/soundfile
+    # parser.add_argument("--checkpoint", 
+    #                     default="./pwg_f1.pkl", 
+    #                     type=str, help="checkpoint file to be loaded.")
+    # parser.add_argument("--config", 
+    #                     default="./parallel_wavegan/bin/config.yml", type=str,
+    #                     help="yaml format configuration file. if not explicitly provided, "
+    #                          "it will be searched in the checkpoint directory. (default=None)")
+    # parser.add_argument("--verbose", type=int, default=1,
+    #                     help="logging level. higher is more logging. (default=1)")
+    # args = parser.parse_args()
+    args = argparse.Namespace(checkpoint='./pwg_f1.pkl', config='./parallel_wavegan/bin/config.yml', 
+                    dumpdir='./taco2/exp/pwg/mel', feats_scp=None, outdir='./static/exp/pwg/soundfile/', verbose=1)
     # set logger
     if args.verbose > 1:
         logging.basicConfig(
