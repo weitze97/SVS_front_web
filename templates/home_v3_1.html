@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SVS online</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
+    </head>
+    <body>
+        <center>
+            <h1>線上歌聲合成系統</h1>
+            <h4>Audio and Hearing Group, NTHU</h4>
+            <!--alert()會彈出訊息提示-->
+            <input type="button" class="btn btn-light" value="點此查看使用方法" 
+            onclick="alert('----------使用說明----------')">        
+        </center>
+        <!--bootstrap預設將畫面分成12欄-->
+        <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
+            <h2>使用說明：</h2>
+            <h8>我們提供兩種檔案上傳格式（目前只適用"*.txt"），取決於您有無現成符合本系統可運行的檔案格式</h8>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="item">
+                    <h5>如果您的檔案符合我們的格式：</h5>
+                    <center>
+                    <a href="{{url_for('oneclick')}}" class="btn btn-outline-dark btn-lg">一鍵合成點此</a>
+                    </center>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="item">
+                    <h5>如果您有個別尚未合併的文字檔：</h5>
+                    <center>
+                    <a href="{{url_for('mergefile')}}" class="btn btn-outline-dark btn-lg">一鍵合併並合成點此</a>
+                    </center>
+                    </div>
+                </div>
+            </div>           
+            <div class="row">
+                <span class="border border-3 border-dark">
+                    <center>
+                        <h4>請聽聽看這個範例：</h4>
+                        <audio controls>
+                            <source src="static/exp/pwg/soundfiles_b/pwg_birthday.wav" type="audio/wav">
+                        </audio>
+                        <br>
+                        <a href="{{url_for('music')}}" class="btn btn-dark">歷史合成結果</a>
+                    </center>
+                </span>
+            </div>
+        </div>   
+        
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+</body>
+</html>
