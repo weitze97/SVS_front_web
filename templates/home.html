@@ -7,34 +7,111 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SVS online</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
+        <style type="text/css">
+            body  {
+                  background-image:url('/static/images/fig9.png');
+                  background-repeat: no-repeat;
+                  background-attachment: fixed;
+                  background-position: center;
+                  background-size: cover;
+                  }
+            h1 {font-weight:900;}
+            h2 {font-weight:900;}
+            h3 {font-weight:900;}
+            h4 {font-weight:900;}
+            h5 {font-weight:900;}
+            h8 {font-weight:900;}
+        </style>
+
     </head>
     <body>
+      <br>
+      <br>
+      <br>
         <center>
             <h1>線上歌聲合成系統</h1>
-            <h4>Audio and Hearing Group, NTHU</h4>
-            <!--alert()會彈出訊息提示-->
-            <input type="button" class="btn btn-light" value="點此查看使用方法" 
-            onclick="alert('----------使用說明----------')">        
+            <h4>Audio and Hearing Group, NTHU</h4> 
         </center>
         <!--bootstrap預設將畫面分成12欄-->
         <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
-            <h2>使用說明：</h2>
-            <h8>我們提供兩種檔案上傳格式（目前只適用"*.txt"），取決於您有無現成符合本系統可運行的檔案格式</h8>
+            <h3>使用說明：</h3>
+            <!--下拉選單(歌詞，音高，節拍)-->
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                      歌詞輸入規則
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <strong>1.字數限制:</strong>每一句不可超過十字，超過請換行視為下一句輸入<br>
+                        <strong>2.換氣聲音:</strong>在欲換氣處的歌詞輸入'sil'<br>
+                        <strong>3.注意事項:</strong>請勿有空白行出現，檔案使用.txt格式<br>
+                        <strong>4.範例:</strong><br>
+                        <img src="/static/images/fig1_1.jpg" class="card-img-top" alt="...">
+                        <br>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        音高輸入規則
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        <strong>1.音高數限制:</strong>與歌詞字數和句數需相符<br>
+                        <strong>2.換氣音高:</strong>在欲換氣處的音高輸入'1'<br>
+                        <strong>3.音高標註方法:</strong>請使用midi規範，以下提供對照表參考(受資料限制，僅鍵盤上有標示之數字或有做黃色標記的音高有辦法合成)<br>
+                        <img src="/static/images/fig2.jpg" class="card-img-top" alt="...">
+                        <strong>4.注意事項:</strong>請勿有空白行出現，檔案使用.txt格式<br>
+                        <strong>5.範例:</strong><br>
+                        <img src="/static/images/fig2_1.jpg" class="card-img-top" alt="...">
+                        <br>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        音長輸入規則
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                        <strong>1.音長數限制:</strong>與歌詞字數和句數需相符<br>
+                        <strong>2.節奏預設:</strong>節奏預設為120bpm，四分音符=輸入1、八分音符輸入0.5，以此類推<br>
+                        <strong>3.注意事項:</strong>請勿有空白行出現，檔案使用.txt格式<br>
+                        <strong>4.範例:</strong><br>
+                        <img src="/static/images/fig5_1.jpg" class="card-img-top" alt="...">
+                        <br>
+                    </div>
+                  </div>
+                </div>
+            </div>
             <br>
+            <h8>接著使用"|"符號將歌詞、音高、節拍串接起來(方法一)，或是直接交給網頁幫您串接(方法二)<br>
+            以下有圖示可供參考:</h8>
             <br>
             <div class="row">
                 <div class="col">
                     <div class="item">
-                    <h5>如果您的檔案符合我們的格式：</h5>
+                    <h5>方法一：</h5>
                     <center>
+                    <img src="/static/images/fig6_1.jpg" class="card-img-top" alt="...">
                     <a href="{{url_for('oneclick')}}" class="btn btn-outline-dark btn-lg">一鍵合成點此</a>
                     </center>
                     </div>
                 </div>
                 <div class="col">
                     <div class="item">
-                    <h5>如果您有個別尚未合併的文字檔：</h5>
+                    <h5>方法二：</h5>
                     <center>
+                    <img src="/static/images/fig1_1.jpg" class="card-img-top" alt="...">
+                    <img src="/static/images/fig2_1.jpg" class="card-img-top" alt="...">
+                    <img src="/static/images/fig5_1.jpg" class="card-img-top" alt="...">
                     <a href="{{url_for('mergefile')}}" class="btn btn-outline-dark btn-lg">一鍵合併並合成點此</a>
                     </center>
                     </div>
@@ -45,16 +122,47 @@
                     <center>
                         <h4>請聽聽看這個範例：</h4>
                         <audio controls>
-                            <source src="static/exp/pwg/soundfiles_b/pwg_birthday.wav" type="audio/wav">
+                            <source src="static\exp\pwg\soundfiles_b\butterfly.wav" type="audio/wav">
                         </audio>
                         <br>
-                        <a href="{{url_for('music')}}" class="btn btn-dark">歷史合成結果</a>
+                        <a href="{{url_for('music')}}" class="btn btn-dark">合成結果</a>
                     </center>
                 </span>
             </div>
-        </div>   
-        
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
-</body>
+        </div>
+        <!--導覽列-->
+        <nav class="navbar fixed-top navbar-light bg-light ">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="{{url_for('home')}}">
+              <img src="/static/images/icon2.png" alt="" width="30" height="24" class="d-inline-block align-text-top"> SVM LAB
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">線上歌聲合成系統</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">合成首頁</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('music')}}">合成結果</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://ieeexplore.ieee.org/document/9689619" target="_blank">應用技術</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.ee.nthu.edu.tw/ywliu/" target="_blank">了解更多</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    </body>
 </html>
