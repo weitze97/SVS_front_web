@@ -38,11 +38,6 @@ def oneclick():
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], 'test.txt'))
                 return render_template("oneclick.html")
         if request.form.get('start') == '一鍵合成！':
-        #     df.delete_mel()
-        #     df.delete_s()
-        #     preprocess()
-        #     synth()
-        #     decode()
             return redirect(url_for('svs_process'))
     return render_template("oneclick.html")
 
@@ -51,8 +46,13 @@ def oneclick():
 def svs_process():
     if request.method == 'GET':
         #abort(500) #手動製造錯誤
-        df.delete_mel()
-        df.delete_s()
+        # df.delete_mel()
+        # df.delete_s()
+        df.deletefiles('taco2/exp/pwg/mel/*.h5')
+        df.deletefiles('taco2/exp/pwg/figure/*.png')
+        df.deletefiles('taco2/exp/pwg/soundfile/*.wav')
+        df.deletefiles('static/exp/pwg/soundfile/*.wav')
+        df.deletefiles('web_inputfiles/*.txt')
         preprocess()
         synth()
         decode()
@@ -124,7 +124,13 @@ def music():
         #討論後決定要不要留，amy覺得可以拿掉
         if request.form.get('clear') == 'clear':
             #df.delete_mel()
-            df.delete_s()
+            # df.delete_s()
+            df.deletefiles('taco2/exp/pwg/mel/*.h5')
+            df.deletefiles('taco2/exp/pwg/figure/*.png')
+            df.deletefiles('taco2/exp/pwg/soundfile/*.wav')
+            df.deletefiles('static/exp/pwg/soundfile/*.wav')
+            df.deletefiles('taco2/filelists/f1/test*.txt')
+            df.deletefiles('web_inputfiles/*.txt')
             his_songs = os.listdir('static/exp/pwg/soundfiles_b/')
             songs = os.listdir('static/exp/pwg/soundfile/')
             return render_template("music.html", songs=songs , his_songs=his_songs)
@@ -170,4 +176,4 @@ def server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run(host='0.0.0.0') 
