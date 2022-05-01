@@ -5,26 +5,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/images/piano.ico">
         <title>SVS online</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
         <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
-        <style type="text/css">
-            body  {
-                  background-image:url('/static/images/fig9.png');
-                  background-repeat: no-repeat;
-                  background-attachment: fixed;
-                  background-position: center;
-                  background-size: cover;
-                  }
-            h1 {font-weight:900;}
-            h2 {font-weight:900;}
-            h3 {font-weight:900;}
-            h4 {font-weight:900;}
-            h5 {font-weight:900;}
-            .spinner-div{
-                visibility: hidden;
-            }
-        </style>     
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">    
     </head>
     <body>
         <br>
@@ -42,24 +27,24 @@
             <div class="col">
                 <div class="item">
                 <form method=post enctype=multipart/form-data action="">
-                    <input type=file name=f_lyrics class="btn btn-warning">
-                    <input type=submit name=upload value=上傳歌詞>
+                    <input type=file name=f_lyrics class="btn btn-warning" id=f_lyricsBtn>
+                    <input type=submit name=upload value=上傳歌詞 id=uploadBtn class="btn">
                 </form>
                 </div>
             </div>
             <div class="col">
                 <div class="item">
                 <form method=post enctype=multipart/form-data action="">
-                    <input type=file name=f_pitch class="btn btn-warning">
-                    <input type=submit name=upload value=上傳音高>
+                    <input type=file name=f_pitch class="btn btn-warning" id=f_pitchBtn>
+                    <input type=submit name=upload value=上傳音高 id=uploadBtn class="btn">
                 </form>
                 </div>
             </div>
             <div class="col">
                 <div class="item">
                 <form method=post enctype=multipart/form-data action="">
-                    <input type=file name=f_notelen class="btn btn-warning">
-                    <input type=submit name=upload value=上傳音長>
+                    <input type=file name=f_notelen class="btn btn-warning" id=f_notelenBtn>
+                    <input type=submit name=upload value=上傳音長 id=uploadBtn class="btn">
                 </form>
                 </div>
             </div>
@@ -96,6 +81,12 @@
                   <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">合成首頁</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{url_for('oneclick')}}">一鍵合成</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{url_for('mergefile')}}">一鍵合併並合成</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="{{url_for('music')}}">合成結果</a>

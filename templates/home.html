@@ -5,24 +5,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/images/piano.ico">
         <title>SVS online</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
-        <style type="text/css">
-            body  {
-                  background-image:url('/static/images/fig9.png');
-                  background-repeat: no-repeat;
-                  background-attachment: fixed;
-                  background-position: center;
-                  background-size: cover;
-                  }
-            h1 {font-weight:900;}
-            h2 {font-weight:900;}
-            h3 {font-weight:900;}
-            h4 {font-weight:900;}
-            h5 {font-weight:900;}
-            h8 {font-weight:900;}
-        </style>
-
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     </head>
     <body>
       <br>
@@ -117,19 +103,31 @@
                     </div>
                 </div>
             </div>           
-            <div class="row">
-                <span class="border border-3 border-dark">
+            <!-- <div class="row">
+                <span class="border border-3 border-dark" id="border_home">
                     <center>
                         <h4>請聽聽看這個範例：</h4>
                         <audio controls>
                             <source src="static\exp\pwg\soundfiles_b\butterfly.wav" type="audio/wav">
                         </audio>
                         <br>
-                        <a href="{{url_for('music')}}" class="btn btn-dark">合成結果</a>
+                        <a href="{{url_for('music')}}" class="btn btn-dark" id=resultBtn>合成結果</a>
                     </center>
                 </span>
-            </div>
+            </div> -->
         </div>
+        <div class="infinite" id="inf1" style="margin-top: 20px;">
+          <!-- <span class="border border-3 border-dark" id="border_home"> -->
+              <center>
+                  <h4>請聽聽看這個範例：</h4>
+                  <audio controls>
+                      <source src="static\exp\pwg\soundfiles_b\butterfly.wav" type="audio/wav">
+                  </audio>
+                  <br>
+                  <a href="{{url_for('music')}}" class="btn btn-dark" id="resultBtn">合成結果</a>
+              </center>
+          <!-- </span> -->
+      </div>
         <!--導覽列-->
         <nav class="navbar fixed-top navbar-light bg-light ">
           <div class="container-fluid">
@@ -148,6 +146,12 @@
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">合成首頁</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('oneclick')}}">一鍵合成</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('mergefile')}}">一鍵合併並合成</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{url_for('music')}}">合成結果</a>
