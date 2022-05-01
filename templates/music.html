@@ -5,24 +5,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/images/piano.ico">
         <title>SVS online</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
         <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
-        <style type="text/css">
-            body  {
-                  background-image:url('/static/images/fig9.png');
-                  background-repeat: no-repeat;
-                  background-attachment: fixed;
-                  background-position: center;
-                  background-size: cover;
-                  }
-            h1 {font-weight:900;}
-            h2 {font-weight:900;}
-            h3 {font-weight:900;}
-            h4 {font-weight:900;}
-            h5 {font-weight:900;}
-            h8 {font-weight:900;}
-        </style>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     </head>
     <body>
         <br>
@@ -33,16 +20,17 @@
             <h4>Audio and Hearing Group, NTHU</h4> 
         </center>
         <!--bootstrap預設將畫面分成12欄-->
-        <div class="container-fuild">   <!--container為定寬容器；加上fluid:不定寬容器-->
+        <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
             <div class="row">
                 <div class="col">
                     <div class="text-left">
                         <center>
                             <h2>本次合成結果</h2>
+                            <h3>請你聽聽看!</h3>
                             <audio id="audio_now" controls="controls" autoplay="autoplay" ></audio>
                             <ul>
                                 {% for song in songs %}
-                                    <li><a href="javascript:void(0);" onclick="playSong_now('{{song}}')">{{song}}</a></li>
+                                    <a href="javascript:void(0);" onclick="playSong_now('{{song}}')" class="list-group-item list-group-item-action">{{song}}</a>
                                 {% endfor %}
                             </ul>
                             <script type="text/javascript">
@@ -53,7 +41,7 @@
                             <h5>如果願意分享給其他人，清除前記得儲存檔案喔!</h5>
                             <h5>清除本次合成音檔</h5>
                             <form method="post" action="">
-                                <input type="submit" value="clear" name="clear">
+                                <input type="submit" value="clear" name="clear" class="btn" id="f_doneBtn">
                             </form>
                         </center>
                     </div>
@@ -68,11 +56,14 @@
                         <h2>歷史合成結果</h2>
                         <h3>聽聽別人合成的成果吧!</h3>
                         <audio id="audio_his" controls="controls" autoplay="autoplay" ></audio>
+                          <div class="list-group">    
                             <ul>
                                 {% for song0 in his_songs %}
-                                    <li><a href="javascript:void(0);" onclick="playSong_his('{{song0}}')">{{song0}}</a></li>
+                                    <!-- <li><a href="javascript:void(0);" onclick="playSong_his('{{song0}}')" class="list-group-item list-group-item-action">{{song0}}</a></li> -->
+                                    <a href="javascript:void(0);" onclick="playSong_his('{{song0}}')" class="list-group-item list-group-item-action">{{song0}}</a>
                                 {% endfor %}
                             </ul>
+                          </div>
                             <script type="text/javascript">
                                 function playSong_his(song0){
                                     $('#audio_his').attr('src', '../static/exp/pwg/soundfiles_b/'+song0);
@@ -85,13 +76,13 @@
                                     <span class="input-group-text">(限用英文取名)</span>
                                     <input type="text" class="form-control" aria-label="file name" id="savefname" name="nm">
                                 </div>
-                                <input type="submit" value="save" name="save">
+                                <input type="submit" value="save" name="save" class="btn" id="f_doneBtn">
                             </form>
                     </center>
                 </div>
             </div>
             <center>
-                <a href="{{url_for('home')}}" class="btn btn-primary">回到合成頁面！</a>
+                <a href="{{url_for('home')}}" class="btn" id="resultBtn">回到合成頁面！</a>
             </center>
         </div>
         <!--導覽列-->
@@ -112,6 +103,12 @@
                   <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">合成首頁</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{url_for('oneclick')}}">一鍵合成</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{url_for('mergefile')}}">一鍵合併並合成</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="{{url_for('music')}}">合成結果</a>

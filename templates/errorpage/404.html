@@ -5,23 +5,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/images/piano.ico">
         <title>SVS online - 404</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
         <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
-        <style type="text/css">
-            body  {
-                  background-image:url('/static/images/fig9.png');
-                  background-repeat: no-repeat;
-                  background-attachment: fixed;
-                  background-position: center;
-                  background-size: cover;
-                  }
-            h1 {font-weight:900;}
-            h2 {font-weight:900;}
-            h3 {font-weight:900;}
-            h4 {font-weight:900;}
-            h5 {font-weight:900;}
-        </style>
+        <link rel="stylesheet" type="text/css" href="static/css/style.css">
     </head>
     <body>
         <br>
@@ -43,7 +31,7 @@
         <!--導覽列-->
         <nav class="navbar fixed-top navbar-light bg-light ">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="{{ url_for('home') }}">
                 <img src="/static/images/icon2.png" alt="" width="30" height="24" class="d-inline-block align-text-top"> SVM LAB
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">

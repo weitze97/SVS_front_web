@@ -28,7 +28,7 @@ def home():
         return render_template("home.html")   # 回傳網站首頁內容
     return render_template("home.html")
 
-@app.route("/oneclick", methods=['GET', 'POST'])
+@app.route("/oneclick/", methods=['GET', 'POST'])
 def oneclick():
     if request.method == 'POST':
         if request.form.get('upload') == '上傳單一檔案':
@@ -42,7 +42,7 @@ def oneclick():
     return render_template("oneclick.html")
 
 
-@app.route("/svs_process", methods=['GET', 'POST'])
+@app.route("/svs_process/", methods=['GET', 'POST'])
 def svs_process():
     if request.method == 'GET':
         #abort(500) #手動製造錯誤
@@ -59,7 +59,7 @@ def svs_process():
         return redirect(url_for('music'))
     return render_template("svs_process.html")
 '''
-@app.route("/svs_process")
+@app.route("/svs_process/")
 def svs_process():
     num_progress = 0
     df.delete_mel()
@@ -75,7 +75,7 @@ def svs_process():
 '''
 
 
-@app.route("/mergefile", methods=['GET', 'POST'])
+@app.route("/mergefile/", methods=['GET', 'POST'])
 def mergefile():
     UPLOAD_FOLDER_2 = './web_inputfiles'
     app.config['UPLOAD_FOLDER_MERGE'] = UPLOAD_FOLDER_2
@@ -136,7 +136,7 @@ def music():
             return render_template("music.html", songs=songs , his_songs=his_songs)
     return render_template("music.html", songs=songs , his_songs=his_songs)
     
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/upload/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # 檢查POST有沒有符合檔名
@@ -176,4 +176,4 @@ def server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0') 
+    app.run(host='0.0.0.0', debug=False) 
