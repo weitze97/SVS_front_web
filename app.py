@@ -52,7 +52,6 @@ def svs_process():
         df.deletefiles('taco2/exp/pwg/figure/*.png')
         df.deletefiles('taco2/exp/pwg/soundfile/*.wav')
         df.deletefiles('static/exp/pwg/soundfile/*.wav')
-        df.deletefiles('web_inputfiles/*.txt')
         preprocess()
         synth()
         decode()
@@ -138,6 +137,7 @@ def music():
     
 @app.route('/upload/', methods=['GET', 'POST'])
 def upload_file():
+    abort(500)
     if request.method == 'POST':
         # 檢查POST有沒有符合檔名
         if 'file' not in request.files:

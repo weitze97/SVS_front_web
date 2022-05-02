@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/static/images/piano.ico">
-        <title>SVS online</title>
+        <title>SVMLAB歌聲合成系統 - 合成結果</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
         <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -82,8 +82,12 @@
                 </div>
             </div>
             <center>
-                <a href="{{url_for('home')}}" class="btn" id="resultBtn">回到合成頁面！</a>
+              <a href="{{url_for('home')}}" class="btn" id="resultBtn">回到首頁！</a>
             </center>
+        </div>
+        <div id="inf1">
+          <h4>若在合成過程中有失敗或任何其他問題，歡迎回報至實驗室信箱：<a href="mailto:ahglab2022@gmail.com" id="mailtext">ahglab2022@gmail.com</a></h4>
+          <h4>若願意附上您所輸入的.txt檔協助我們改進，我們會非常謝謝您！</h4>
         </div>
         <!--導覽列-->
         <nav class="navbar fixed-top navbar-light bg-light ">

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/static/images/piano.ico">
-    <title>SVS online</title>
+    <title>SVMLAB歌聲合成系統 - 一鍵合成</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
     <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -31,9 +31,14 @@
             <div class="col">
                 <center>
                     <form method=post enctype=multipart/form-data action={{url_for('oneclick')}}>
-                        <input type=file name=f_done class="btn btn-primary" id="f_doneBtn">
+                        <input type=file name=f_done class="form-control" id="f_doneBtn">
                         <input type=submit name=upload value=上傳單一檔案 id="uploadBtn" class="btn">
                     </form>
+                    <!-- <div class="mb-3">
+                      <label for="formFile" class="form-label">Default file input example</label>
+                      <input class="form-control" type="file" name=f_done id="formFile">
+                      <input type=submit name=upload value=上傳單一檔案 id="uploadBtn" class="btn">
+                    </div> -->
                 </center>
             </div>
         </div>
@@ -49,8 +54,16 @@
                     </div>
                     正在進行合成，這通常會進行數秒鐘至2分鐘...
                 </div>
+                <div class="alert alert-dark" role="alert" id="tiptext" style="margin-top: 10px; border-radius: 20px;">
+                  <h4>（若您的裝置無可用文字編輯器，可利用<a href="https://textdoc.co/"
+                    target="_blank">TextDoc File Editor</a>創建文字並上傳至本系統）</h4>
+                </div>
             </center>
         </div>
+    </div>
+    <div class="infinite" id="inf1">
+      <h4>若在合成過程中有失敗或任何其他問題，歡迎回報至實驗室信箱：<a href="mailto:ahglab2022@gmail.com" id="mailtext">ahglab2022@gmail.com</a></h4>
+      <h4>若願意附上您所輸入的.txt檔協助我們改進，我們會非常謝謝您！</h4>
     </div>
      <!--導覽列-->
      <nav class="navbar fixed-top navbar-light bg-light ">
@@ -106,6 +119,8 @@
             $('.spinner-div').css('visibility', 'visible');
             $('#oneclickBtn').css('opacity', '65%');
             $('#oneclickBtn').css('pointer-events', 'none');
+            $('#uploadBtn').css('opacity', '65%');
+            $('#uploadBtn').css('pointer-events', 'none');
         });
     });
     $(window).on("load", function () { 
@@ -113,6 +128,8 @@
             $('.spinner-div').css('visibility', 'visible');
             $('#oneclickBtn').css('opacity', '65%');
             $('#oneclickBtn').css('pointer-events', 'none');
+            $('#uploadBtn').css('opacity', '65%');
+            $('#uploadBtn').css('pointer-events', 'none');
         });
     });
 </script>

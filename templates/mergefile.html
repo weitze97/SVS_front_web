@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/static/images/piano.ico">
-        <title>SVS online</title>
+        <title>SVMLAB歌聲合成系統 - 一鍵合併並合成</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
         <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/static/css/style.css">    
@@ -27,24 +27,24 @@
             <div class="col">
                 <div class="item">
                 <form method=post enctype=multipart/form-data action="">
-                    <input type=file name=f_lyrics class="btn btn-warning" id=f_lyricsBtn>
-                    <input type=submit name=upload value=上傳歌詞 id=uploadBtn class="btn">
+                    <input type=file name=f_lyrics class="form-control" id=f_lyricsBtn>
+                    <input type=submit name=upload value=上傳歌詞 id=uploadBtn1 class="btn">
                 </form>
                 </div>
             </div>
             <div class="col">
                 <div class="item">
                 <form method=post enctype=multipart/form-data action="">
-                    <input type=file name=f_pitch class="btn btn-warning" id=f_pitchBtn>
-                    <input type=submit name=upload value=上傳音高 id=uploadBtn class="btn">
+                    <input type=file name=f_pitch class="form-control" id=f_pitchBtn>
+                    <input type=submit name=upload value=上傳音高 id=uploadBtn2 class="btn">
                 </form>
                 </div>
             </div>
             <div class="col">
                 <div class="item">
                 <form method=post enctype=multipart/form-data action="">
-                    <input type=file name=f_notelen class="btn btn-warning" id=f_notelenBtn>
-                    <input type=submit name=upload value=上傳音長 id=uploadBtn class="btn">
+                    <input type=file name=f_notelen class="form-control" id=f_notelenBtn>
+                    <input type=submit name=upload value=上傳音長 id=uploadBtn3 class="btn">
                 </form>
                 </div>
             </div>
@@ -59,10 +59,15 @@
                   </div>
                   正在進行合成，這通常會進行數秒鐘至2分鐘...
                 </div>
+                
                 </center>
             </form>
         </div>
-        </div>    
+        </div>   
+        <div id="inf1">
+          <h4>若在合成過程中有失敗或任何其他問題，歡迎回報至實驗室信箱：<a href="mailto:ahglab2022@gmail.com" id="mailtext">ahglab2022@gmail.com</a></h4>
+          <h4>若願意附上您所輸入的.txt檔協助我們改進，我們會非常謝謝您！</h4>
+        </div> 
         <!--導覽列-->
         <nav class="navbar fixed-top navbar-light bg-light ">
             <div class="container-fluid">
@@ -112,13 +117,25 @@
           $('.spinner-div').css('visibility', 'visible');
           $('#mergeBtn').css('opacity', '65%');
           $('#mergeBtn').css('pointer-events', 'none');
+          $('#uploadBtn1').css('opacity', '65%');
+          $('#uploadBtn1').css('pointer-events', 'none');
+          $('#uploadBtn2').css('opacity', '65%');
+          $('#uploadBtn2').css('pointer-events', 'none');
+          $('#uploadBtn3').css('opacity', '65%');
+          $('#uploadBtn3').css('pointer-events', 'none');
+        });
       });
-  });
   $(window).on("load", function () { 
       $('#mergeBtn').click(function(){
           $('.spinner-div').css('visibility', 'visible');
           $('#mergeBtn').css('opacity', '65%');
           $('#mergeBtn').css('pointer-events', 'none');
+          $('#uploadBtn1').css('opacity', '65%');
+          $('#uploadBtn1').css('pointer-events', 'none');
+          $('#uploadBtn2').css('opacity', '65%');
+          $('#uploadBtn2').css('pointer-events', 'none');
+          $('#uploadBtn3').css('opacity', '65%');
+          $('#uploadBtn3').css('pointer-events', 'none');
+        });
       });
-  });
 </script>

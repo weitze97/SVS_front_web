@@ -14,7 +14,7 @@ list_final = ['iamg', 'iang', 'iomg', 'iong', 'uamg', 'uang', 'uemg', 'ueng',
               'ong', 'uai', 'uam', 'uan', 'uei', 'uem', 'un', 'vam', 'van',
               'ai', 'am', 'an', 'ao', 'ei', 'em', 'en', 'ia', 'ie', 'im', 'in',
               'io', 'ou', 'ua', 'uo', 've', 'vm', 'vn', 'm', 'ng', 'n', 'a', 'o',
-              'eh', 'e', 'ih', 'irh', 'i', 'u', 'v','er']  # +'er'
+              'eh', 'e', 'ih', 'irh', 'i', 'u', 'v','er', 'ui']  # +'er'# +'ui'
 
 lasttable = {'ya': 'a', 'ia': 'a', 'ye': 'e', 'ie': 'e', 'yao': 'ao', 'iao': 'ao', 'you': 'ou','iou': 'ou', 
              'yan': 'an', 'ian': 'an', 'yin':'in', 'yang': 'ang', 'iang': 'ang','ying': 'ing',
