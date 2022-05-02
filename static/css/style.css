@@ -2,6 +2,7 @@
 
 body  {
  background-image:url('/static/images/fig9.png');
+ /* background-color: aliceblue; */
  background-repeat: no-repeat;
  background-attachment: fixed;
  background-position: center;
@@ -10,23 +11,49 @@ body  {
  }
  h1, h2, h3, h4, h5, h8 {font-weight:500;}
 
-input#oneclickBtn, input#mergeBtn, a#resultBtn{
+input#oneclickBtn, input#mergeBtn, a#resultBtn, .btn-outline-dark:hover{
  background-color: #1d3557;
  border-color: #1d3557;
  color: #fff;
 }
 input#f_doneBtn, input#f_lyricsBtn, input#f_pitchBtn, input#f_notelenBtn{
- background-color: #34A0A4;
- border-color: #34A0A4;
+ /* background-color: #34A0A4; */
+ background-color: #0077b6;
+ border-color: #0077b6;
  color: #fff;
 }
 
+.form-control#f_doneBtn, .form-control#f_lyricsBtn, .form-control#f_pitchBtn, .form-control#f_notelenBtn{
+ display: inline;
+ width: 300px;
+}
+
+
+.btn-outline-dark {
+ color: #212529;
+ border-color: #1d3557;
+ margin-top: 8px;
+}
+
+div.infinite  {
+ background-color: #0077b6;
+ color: #fff;
+ text-align: left;
+ /* padding控制字的邊界: (上右下左) */
+ padding: 20px 15% 20px 15%; 
+}
 div#inf1{
- background-color: #34A0A4;
+ background-color: #0077b6;
  color: #fff;
+ margin-top: 20px; 
+ border-top: 10px solid white;
+ border-bottom: 10px solid white;
+ text-align: left;
+ /* padding控制字的邊界: (上右下左) */
+ padding: 20px 15% 20px 15%; 
 }
 
-input#uploadBtn {
+input#uploadBtn, #uploadBtn1, #uploadBtn2, #uploadBtn3 {
  background-color: #5fa8d3;
  border-color: #5fa8d3;
  color: #fff;
@@ -35,3 +62,12 @@ input#uploadBtn {
 .spinner-div{
  visibility: hidden;
 } 
+
+div#tiptext {
+ background-color: #e3f2fd;
+ border-color: #e3f2fd;
+}
+
+a#mailtext {
+ color: #fff;
+}

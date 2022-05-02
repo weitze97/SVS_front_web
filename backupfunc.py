@@ -6,7 +6,7 @@ import shutil
 #從網站獲取new_name input
 #正式使用要將.txt改成.wav
 def backup_s(new_name) :
-    src = 'static/exp/pwg/soundfile/pwg_birthday.wav'
+    src = 'static/exp/pwg/soundfile/svs_result.wav'
     #des_0 = 'static/exp/pwg/backup/soundfiles_b'
     des_1 = 'static/exp/pwg/soundfiles_b/'+new_name+'.wav'
     #dir_files = glob.glob(des_0 + '/*.txt')
