@@ -15,24 +15,25 @@
       <br>
       <br>
         <center>
-            <h1>線上歌聲合成系統</h1>
+            <h1 style="font-weight: 600;">線上歌聲合成系統</h1>
             <h4>Audio and Hearing Group, NTHU</h4>
             <h6 style="font-weight: 300;">*專為華人設計的歌聲合成技術*</h6> 
         </center>
         <!--bootstrap預設將畫面分成12欄-->
         <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
-            <h3>使用說明：</h3>
+          <h2 style="font-weight: 600; margin-top: 60px; margin-bottom: 60px; text-align: center;">把中文文字加上旋律轉換成聽得到的歌聲（Text-to-Singing）</h2>
+          <h3>使用說明：</h3>
             <h4>（若您的裝置無可用文字編輯器，可利用<a href="https://textdoc.co/"
               target="_blank">TextDoc File Editor</a>創建文字並上傳至本系統）</h4>
             <!--下拉選單(歌詞，音高，節拍)-->
             <div class="accordion" id="accordionPanelsStayOpenExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
                       歌詞輸入規則
                     </button>
                   </h2>
-                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
                         <strong>1.字數限制:</strong>每一句不可超過十字，超過請換行視為下一句輸入<br>
                         <strong>2.換氣聲音:</strong>在欲換氣處的歌詞輸入'sil'<br>
@@ -71,7 +72,7 @@
                   <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
                         <strong>1.音長數限制:</strong>與歌詞字數和句數需相符<br>
-                        <strong>2.節奏預設:</strong>節奏預設為120bpm，四分音符=輸入1、八分音符輸入0.5，以此類推<br>
+                        <strong>2.節奏預設:</strong>節奏預設為120bpm，四分音符輸入1、八分音符輸入0.5（除此之外無法使用）<br>
                         <strong>3.注意事項:</strong>請勿有空白行出現，檔案使用.txt格式<br>
                         <strong>4.範例:</strong><br>
                         <img src="/static/images/fig5_1.jpg" class="card-img-top" alt="...">
@@ -88,9 +89,9 @@
                 <div class="col">
                     <div class="item">
                     <h5>方法一：</h5>
+                    <a href="{{url_for('oneclick')}}" class="btn btn-outline-dark btn-lg" style="margin-bottom: 10px;">一鍵合成點此</a>
                     <center>
                     <img src="/static/images/fig6_1.jpg" class="card-img-top" alt="...">
-                    <a href="{{url_for('oneclick')}}" class="btn btn-outline-dark btn-lg">一鍵合成點此</a>
                     </center>
                     </div>
                     <div class="alert alert-dark" role="alert" id="tiptext" style="margin-top: 10px; border-radius: 20px;">
@@ -103,11 +104,11 @@
                 <div class="col">
                     <div class="item">
                     <h5>方法二：</h5>
+                    <a href="{{url_for('mergefile')}}" class="btn btn-outline-dark btn-lg" style="margin-bottom: 10px;">一鍵合併並合成點此</a>
                     <center>
                     <img src="/static/images/fig1_1.jpg" class="card-img-top" alt="...">
                     <img src="/static/images/fig2_1.jpg" class="card-img-top" alt="...">
                     <img src="/static/images/fig5_1.jpg" class="card-img-top" alt="...">
-                    <a href="{{url_for('mergefile')}}" class="btn btn-outline-dark btn-lg">一鍵合併並合成點此</a>
                     </center>
                     </div>
                 </div>

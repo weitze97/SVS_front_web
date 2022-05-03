@@ -80,21 +80,21 @@ def mergefile():
     app.config['UPLOAD_FOLDER_MERGE'] = UPLOAD_FOLDER_2
     if request.method == 'POST':
         if request.form.get('start') == '一鍵合併並合成！':
-            file = request.files['f_lyrics']
-            if  file and allowed_file(file.filename):
+            file1 = request.files['f_lyrics']
+            if  file1 and allowed_file(file1.filename):
                 # 上傳檔案到目標資料夾
-                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '01lyrics.txt'))
-                return render_template("mergefile.html")
-            file = request.files['f_pitch']
-            if  file and allowed_file(file.filename):
+                file1.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '01lyrics.txt'))
+                # return render_template("mergefile.html")
+            file2 = request.files['f_pitch']
+            if  file2 and allowed_file(file2.filename):
                 # 上傳檔案到目標資料夾
-                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '02pitch.txt'))
-                return render_template("mergefile.html")
-            file = request.files['f_notelen']
-            if  file and allowed_file(file.filename):
+                file2.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '02pitch.txt'))
+                # return render_template("mergefile.html")
+            file3 = request.files['f_notelen']
+            if  file3 and allowed_file(file3.filename):
                 # 上傳檔案到目標資料夾
-                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '03notelength.txt'))
-                return render_template("mergefile.html")
+                file3.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '03notelength.txt'))
+                # return render_template("mergefile.html")
             merge()
             return redirect(url_for('svs_process'))
     return render_template("mergefile.html")
@@ -170,4 +170,4 @@ def server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=False) 
+    app.run(host='0.0.0.0', debug=True) 
