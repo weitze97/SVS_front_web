@@ -17,7 +17,7 @@
         <br>
         <center>
             <h1>線上歌聲合成系統</h1>
-            <h4>Audio and Hearing Group, NTHU</h4> 
+            <h4>Audio and Hearing Group, NTHU</h4> <br>
         </center>
         <!--bootstrap預設將畫面分成12欄-->
         <div class="container">   <!--container為定寬容器；加上fluid:不定寬容器-->
@@ -27,6 +27,7 @@
                         <center>
                             <h2>本次合成結果</h2>
                             <h3>請你聽聽看!</h3>
+                            <h6>*本次合成結果檔名意義:<br>    mel_數字_gen.wav--第某句(行)的合成結果<br>    svs_result.wav--最終合成結果</h6>
                             <audio id="audio_now" controls="controls" autoplay="autoplay" ></audio>
                             <ul>
                                 {% for song in songs %}
