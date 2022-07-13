@@ -164,17 +164,33 @@ def upload_file():
     </form>
     '''
 path_l= 'web_inputfiles/01lyrics.txt'
-
+path_p= 'web_inputfiles/02pitch.txt'
+path_n= 'web_inputfiles/03notelength.txt'
 @app.route("/type_l/", methods=['GET', 'POST'])
 def type_l():
     if request.method == 'GET':
         return render_template("type.html")
     elif request.method == 'POST':
-        if request.form.get('save') == 'save':
+        if request.form.get('save1') == 'save1':
             #獲取輸入歌詞
             input_lyrics = request.form["lyrics_input"]
-            with open(path_l, 'w') as f:
-                f.write(input_lyrics)
+            input_lyrics1 = input_lyrics.replace('\r\n', '\n')
+            with open(path_l, 'w',encoding="utf-8") as f:
+                f.writelines(input_lyrics1)
+            return render_template("type.html")
+        if request.form.get('save2') == 'save2':
+            #獲取輸入音高
+            input_pitch = request.form["pitch_input"]
+            input_pitch1 = input_pitch.replace('\r\n', '\n')
+            with open(path_p, 'w',encoding="utf-8") as f:
+                f.writelines(input_pitch1)
+            return render_template("type.html")
+        if request.form.get('save3') == 'save3':
+            #獲取輸入音長
+            input_notelength = request.form["notelength_input"]
+            input_notelength1 = input_notelength.replace('\r\n', '\n')
+            with open(path_n, 'w',encoding="utf-8") as f:
+                f.writelines(input_notelength1)
             return render_template("type.html")
 
 # Error Handlers

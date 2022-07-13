@@ -25,6 +25,7 @@
     <!--bootstrap預設將畫面分成12欄-->
     <div class="container">
         <!--container為定寬容器；加上fluid:不定寬容器-->
+        <!--歌詞輸入-->
         <div class="col">
             <form method="post" action="">
                 <h4>輸入歌詞:</h4>
@@ -32,9 +33,31 @@
                     <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="lyrics_input" style="height: 100px"></textarea>
                     <label for="floatingTextarea2">蝴蝶蝴蝶生的真美麗 sil</label>
                 </div>
-                <input type="submit" value="save" name="save" class="btn" id="f_doneBtn">
+                <input type="submit" value="save1" name="save1" class="btn" id="f_doneBtn">
             </form>
         </div>
+        <!--音高輸入-->
+        <div class="col">
+          <form method="post" action="">
+              <h4>輸入音高:</h4>
+              <div class="form-floating">
+                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="pitch_input" style="height: 100px"></textarea>
+                  <label for="floatingTextarea2">60 60 64 64 62 60 62 64 60 1</label>
+              </div>
+              <input type="submit" value="save2" name="save2" class="btn" id="f_doneBtn">
+          </form>
+      </div>
+      <!--音長輸入-->
+      <div class="col">
+        <form method="post" action="">
+            <h4>輸入音長:</h4>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="notelength_input" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5</label>
+            </div>
+            <input type="submit" value="save3" name="save3" class="btn" id="f_doneBtn">
+        </form>
+    </div>
     </div>
     <div class="infinite" id="inf1">
       <h4>若在合成過程中有失敗或任何其他問題，歡迎回報至實驗室信箱：<a href="mailto:ahglab2022@gmail.com" id="mailtext">ahglab2022@gmail.com</a></h4>
