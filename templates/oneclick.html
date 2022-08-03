@@ -26,21 +26,42 @@
     <div class="container">
         <!--container為定寬容器；加上fluid:不定寬容器-->
         <div class="row">
-            <!--span class="border border-3 border-primary">
-                    <!--div class="text-left"-->
-            <div class="col">
-                <center>
-                    <form method=post enctype=multipart/form-data action={{url_for('oneclick')}}>
-                        <input type=file name=f_done class="form-control" id="f_doneBtn">
-                        <input type=submit name=upload value=上傳單一檔案 id="uploadBtn" class="btn">
-                    </form>
-                    <!-- <div class="mb-3">
-                      <label for="formFile" class="form-label">Default file input example</label>
-                      <input class="form-control" type="file" name=f_done id="formFile">
-                      <input type=submit name=upload value=上傳單一檔案 id="uploadBtn" class="btn">
-                    </div> -->
-                </center>
-            </div>
+          <!--歌詞輸入-->
+          <div class="col">
+            <form method="post" action="">
+              <h4>輸入歌詞:</h4>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="lyrics_input"
+                  style="height: 100px"></textarea>
+                <label for="floatingTextarea2">蝴蝶蝴蝶生的真美麗 sil</label>
+              </div>
+              <input type="submit" value="save1" name="save1" class="btn" id="f_doneBtn">
+            </form>
+          </div>
+          <!--音高輸入-->
+          <div class="col">
+            <form method="post" action="">
+              <h4>輸入音高:</h4>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="pitch_input"
+                  style="height: 100px"></textarea>
+                <label for="floatingTextarea2">60 60 64 64 62 60 62 64 60 1</label>
+              </div>
+              <input type="submit" value="save2" name="save2" class="btn" id="f_doneBtn">
+            </form>
+          </div>
+          <!--音長輸入-->
+          <div class="col">
+            <form method="post" action="">
+              <h4>輸入音長:</h4>
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                  name="notelength_input" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5</label>
+              </div>
+              <input type="submit" value="save3" name="save3" class="btn" id="f_doneBtn">
+            </form>
+          </div>
         </div>
         <div class="row">
             <center>
@@ -86,9 +107,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{{url_for('oneclick')}}">一鍵合成</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{url_for('mergefile')}}">一鍵合併並合成</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{{url_for('music')}}">合成結果</a>
