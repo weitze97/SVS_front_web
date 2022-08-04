@@ -79,28 +79,20 @@ def mergefile():
     UPLOAD_FOLDER_2 = './web_inputfiles'
     app.config['UPLOAD_FOLDER_MERGE'] = UPLOAD_FOLDER_2
     if request.method == 'POST':
-        if request.form.get('upload') == '上傳歌詞':
-            file = request.files['f_lyrics']
-            if  file and allowed_file(file.filename):
-                # 上傳檔案到目標資料夾
-                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '01lyrics.txt'))
-                return render_template("mergefile.html")
-
-        if request.form.get('upload') == '上傳音高':
-            file = request.files['f_pitch']
-            if  file and allowed_file(file.filename):
-                # 上傳檔案到目標資料夾
-                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '02pitch.txt'))
-                return render_template("mergefile.html")
-
-        if request.form.get('upload') == '上傳音長':
-            file = request.files['f_notelen']
-            if  file and allowed_file(file.filename):
-                # 上傳檔案到目標資料夾
-                file.save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '03notelength.txt'))
-                return render_template("mergefile.html")
-
         if request.form.get('start') == '一鍵合併並合成！':
+            file = [request.files['f_lyrics'], request.files['f_pitch'], request.files['f_notelen']]
+            for i in file:
+                if  file[0] and allowed_file(file[0].filename):
+                    # 上傳檔案到目標資料夾
+                    file[0].save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '01lyrics.txt'))
+                elif file[1] and allowed_file(file[1].filename):
+                    # 上傳檔案到目標資料夾
+                    file[1].save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '02pitch.txt'))
+                elif file[2] and allowed_file(file[2].filename):
+                    # 上傳檔案到目標資料夾
+                    file[2].save(os.path.join(app.config['UPLOAD_FOLDER_MERGE'], '03notelength.txt'))
+                else:
+                    print('error')
             merge()
             return redirect(url_for('svs_process'))
     return render_template("mergefile.html")
@@ -176,4 +168,4 @@ def server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5002, debug=False)
+    app.run(host='0.0.0.0', port=5002, debug=True) 
