@@ -1,0 +1,3 @@
+20220703 可以直接save textarea 的input，但中文會變成亂碼且多一行
+20220803 將新版的輸入法合併到oneclick.html且移除mergefile.html(pld template都有留在old資料夾)
+          未將移除template對應app1.py的function刪除(我怕動到不該動的)
